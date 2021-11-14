@@ -20,6 +20,7 @@ class CustomSlidableAction extends StatelessWidget {
   const CustomSlidableAction({
     Key? key,
     this.flex = _kFlex,
+    this.labelStyle,
     this.backgroundColor = _kBackgroundColor,
     this.foregroundColor,
     this.autoClose = _kAutoClose,
@@ -28,7 +29,7 @@ class CustomSlidableAction extends StatelessWidget {
   })  : assert(flex > 0),
         super(key: key);
 
-  final TextStyle? textStyle,
+  final TextStyle? labelStyle,
 
   /// {@template slidable.actions.flex}
   /// The flex factor to use for this child.
@@ -144,7 +145,7 @@ class SlidableAction extends StatelessWidget {
   final SlidableActionCallback? onPressed;
 
   /// An icon to display above the [label].
-  final SvgPicture? icon;
+  final dynamic? icon;
 
   /// The space between [icon] and [label] if both set.
   ///
@@ -172,7 +173,7 @@ class SlidableAction extends StatelessWidget {
       }
 
       children.add(
-        label!=null?
+        labelStyle!=null?
         Text(
           label!,
           style: labelStyle,
