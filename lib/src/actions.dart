@@ -28,6 +28,8 @@ class CustomSlidableAction extends StatelessWidget {
   })  : assert(flex > 0),
         super(key: key);
 
+  final TextStyle? textStyle,
+
   /// {@template slidable.actions.flex}
   /// The flex factor to use for this child.
   ///
@@ -72,8 +74,7 @@ class CustomSlidableAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final effectiveForegroundColor = foregroundColor ??
-        (ThemeData.estimateBrightnessForColor(backgroundColor) ==
-                Brightness.light
+        (ThemeData.estimateBrightnessForColor(backgroundColor) == Brightness.light
             ? Colors.black
             : Colors.white);
 
@@ -143,7 +144,7 @@ class SlidableAction extends StatelessWidget {
   final SlidableActionCallback? onPressed;
 
   /// An icon to display above the [label].
-  final IconData? icon;
+  final SvgPicture? icon;
 
   /// The space between [icon] and [label] if both set.
   ///
@@ -159,7 +160,7 @@ class SlidableAction extends StatelessWidget {
 
     if (icon != null) {
       children.add(
-        Icon(icon),
+        icon,
       );
     }
 
@@ -171,10 +172,15 @@ class SlidableAction extends StatelessWidget {
       }
 
       children.add(
+        label!=null?
         Text(
           label!,
+          style: labelStyle,
           overflow: TextOverflow.ellipsis,
-        ),
+        ):Text(
+          label!,
+          overflow: TextOverflow.ellipsis,
+        );
       );
     }
 
